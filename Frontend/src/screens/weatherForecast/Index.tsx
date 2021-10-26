@@ -284,27 +284,27 @@ export default function WeatherForecast({ navigation, route }: any) {
 
             <View>
                 <Text style={styles.bold}>
-                    Temperatura minima: 
+                    Temperatura minima: {' '}
                     <Text style={styles.nonBold}>
-                        {min}
+                        {min+'°'}
                     </Text>
                 </Text>
                 <Text style={styles.bold}>
-                    Temperatura maxima: 
+                    Temperatura maxima: {' '}
                     <Text style={styles.nonBold}>
-                        {max}
-                    </Text>
-                </Text>
-
-                <Text style={styles.bold}>
-                    Humidade do ar: 
-                    <Text style={styles.nonBold}>
-                        {airHumidity}
+                        {max+'°'}
                     </Text>
                 </Text>
 
                 <Text style={styles.bold}>
-                    Velocidade do vento: 
+                    Humidade do ar: {' '}
+                    <Text style={styles.nonBold}>
+                        {airHumidity+"%"}
+                    </Text>
+                </Text>
+
+                <Text style={styles.bold}>
+                    Velocidade do vento: {' '}
                     <Text style={styles.nonBold}>
                         {windSpeed}
                     </Text>

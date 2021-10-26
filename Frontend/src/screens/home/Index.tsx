@@ -71,6 +71,8 @@ export default function Home({ navigation }: any) {
     }, []);
 
     useEffect(() => {
+        setCities([]);
+
         sc.getCidades(state).then(response => {
             setCities(response.data);
         })
