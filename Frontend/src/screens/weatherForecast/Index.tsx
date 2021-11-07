@@ -127,7 +127,7 @@ export default function WeatherForecast({ navigation, route }: any) {
             setWindSpeed(" Somente dia atual.");
             setTemp('');
         }else{
-            setAirHumidity(weatherData.results.humidity.toString());
+            setAirHumidity(weatherData.results.humidity.toString() + "%");
             setWindSpeed(weatherData.results.wind_speedy);
             setTemp('(' + weatherData.results.temp + '°)');
         }
@@ -299,7 +299,7 @@ export default function WeatherForecast({ navigation, route }: any) {
                 <Text style={styles.bold}>
                     Humidade do ar: {' '}
                     <Text style={styles.nonBold}>
-                        {airHumidity+"%"}
+                        {airHumidity}
                     </Text>
                 </Text>
 

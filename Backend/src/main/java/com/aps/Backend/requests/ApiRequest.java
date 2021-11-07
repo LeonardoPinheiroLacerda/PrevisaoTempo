@@ -2,8 +2,10 @@ package com.aps.Backend.requests;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aps.Backend.services.LogService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -11,8 +13,11 @@ import com.squareup.okhttp.Response;
 @Service
 public class ApiRequest {
 
+	@Autowired
+	private LogService logService;
+	
 	private final static String IBGE_BASE_URL = "https://servicodados.ibge.gov.br/api/v1/";
-	private final static String HG_BASE_URL = "https://api.hgbrasil.com/weather?key=c9093d6b&city_name=";
+	private final static String HG_BASE_URL = "https://api.hgbrasil.com/weather?key=ffa6c99b&city_name=";
 
 	// private final static MediaType MEDIA_TYPE =
 	// MediaType.parse("application/json; charset=utf-8");
@@ -28,7 +33,11 @@ public class ApiRequest {
 
 			Response response = CLIENT.newCall(request).execute();
 
-			return response.body().string();
+			String resp = response.body().string();
+			
+			logService.log("Procurando pelos estados - " + resp);
+			
+			return resp;
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -47,7 +56,13 @@ public class ApiRequest {
 
 			Response response = CLIENT.newCall(request).execute();
 
-			return response.body().string();
+			
+			String resp = response.body().string();
+			
+			logService.log("Procurando sigla de estado de id:" + id + " - " + resp);
+			
+			return resp;
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -68,7 +83,12 @@ public class ApiRequest {
 
 			Response response = CLIENT.newCall(request).execute();
 
-			return response.body().string();
+			String resp = response.body().string();
+			
+			logService.log("Procurando cidades de estado de id:" + id + " - " + resp);
+			
+			return resp;
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -87,7 +107,11 @@ public class ApiRequest {
 
 			Response response = CLIENT.newCall(request).execute();
 
-			return response.body().string();
+			String resp = response.body().string();
+			
+			logService.log("Recebendo previsão do tempo de " + city + "-" + UF +" - "+ resp);
+			
+			return resp;
 
 		} catch (IOException e) {
 			e.printStackTrace();
